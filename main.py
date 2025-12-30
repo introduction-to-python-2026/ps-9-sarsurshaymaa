@@ -4,9 +4,9 @@ import pandas as pd
 import joblib
 
 from sklearn.model_selection import train_test_split
-from sklearn.tree import DecisionTreeClassifier
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.pipeline import Pipeline
+from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score
 
 # ===============================
@@ -23,18 +23,18 @@ X = df[features]
 y = df["status"]
 
 # ===============================
-# Train-test split
+# Split data
 # ===============================
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=42
 )
 
 # ===============================
-# Build pipeline (Scaler + Model)
+# Pipeline: Scaling + SVM
 # ===============================
 model = Pipeline([
     ("scaler", MinMaxScaler()),
-    ("classifier", DecisionTreeClassifier(random_state=42))
+    ("svm", SVC(kernel="rbf", C=10, gamma="scale"))
 ])
 
 # ===============================
@@ -43,14 +43,13 @@ model = Pipeline([
 model.fit(X_train, y_train)
 
 # ===============================
-# Evaluate
+# Evaluate (local check)
 # ===============================
 y_pred = model.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
-print("Accuracy:", accuracy)
+print("Validation accuracy:", accuracy)
 
 # ===============================
 # Save model
 # ===============================
 joblib.dump(model, "my_model.joblib")
-
