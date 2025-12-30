@@ -1,4 +1,2 @@
-features:
-  - MDVP:Fo(Hz)
-  - MDVP:Jitter(%)
-path: my_model.joblib
+path: "my_model.joblib"
+features: ['MDVP:Fo(Hz)', 'MDVP:Jitter(%)']
