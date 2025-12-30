@@ -117,4 +117,4 @@ joblib.dump(model, 'my_model.joblib')
 
 """## 8. *Copy the code:*  
 
-   Copy and paste all the code from this notebook into a main.py file in the GitHub repository.
+   Copy and paste all the code from this notebook into a main.py file in the GitHub repository."""
